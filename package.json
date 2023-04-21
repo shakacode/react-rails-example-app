@@ -14,10 +14,11 @@
     "prop-types": "^15.6.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
-    "react_ujs": "^2.2.1"
+    "react_ujs": "^2.2.1",
+    "webpack": "^4.46.0"
   },
   "devDependencies": {
-    "webpack-cli": "^4",
-    "webpack-dev-server": "^4.13.3"
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3"
   }
 }
