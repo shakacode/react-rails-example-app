@@ -1,4 +1,7 @@
+
 module.exports = function(api) {
+  const defaultConfigFunc = require('shakapacker/package/babel/preset.js')
+  const resultConfig = defaultConfigFunc(api)
   var validEnv = ['development', 'test', 'production']
   var currentEnv = api.env()
   var isDevelopmentEnv = api.env('development')
@@ -15,69 +18,28 @@ module.exports = function(api) {
     )
   }
 
-  return {
+  const changesOnDefault = {
     presets: [
-      isTestEnv && [
-        '@babel/preset-env',
+      [
+        '@babel/preset-react',
         {
-          targets: {
-            node: 'current'
-          }
-        }
-      ],
-      (isProductionEnv || isDevelopmentEnv) && [
-        '@babel/preset-env',
-        {
-          forceAllTransforms: true,
-          useBuiltIns: 'entry',
-          corejs: 3,
-          modules: false,
-          exclude: ['transform-typeof-symbol']
-        }
-      ],
-      "@babel/preset-react",
+          development: isDevelopmentEnv || isTestEnv,
+          useBuiltIns: true
+        } 
+      ]
     ].filter(Boolean),
     plugins: [
-      'babel-plugin-macros',
-      '@babel/plugin-syntax-dynamic-import',
-      isTestEnv && 'babel-plugin-dynamic-import-node',
-      '@babel/plugin-transform-destructuring',
-      [
-        '@babel/plugin-proposal-class-properties',
-        {
-          loose: true
+      isProductionEnv && ['babel-plugin-transform-react-remove-prop-types', 
+        { 
+          removeImport: true 
         }
       ],
-      [
-        '@babel/plugin-proposal-object-rest-spread',
-        {
-          useBuiltIns: true
-        }
-      ],
-      [
-        '@babel/plugin-proposal-private-methods',
-        {
-          loose: true
-        }
-      ],
-      [
-        '@babel/plugin-proposal-private-property-in-object',
-        {
-          loose: true
-        }
-      ],
-      [
-        '@babel/plugin-transform-runtime',
-        {
-          helpers: false
-        }
-      ],
-      [
-        '@babel/plugin-transform-regenerator',
-        {
-          async: false
-        }
-      ]
-    ].filter(Boolean)
+      process.env.WEBPACK_SERVE && 'react-refresh/babel'
+    ].filter(Boolean),
   }
+
+  resultConfig.presets = [...resultConfig.presets, ...changesOnDefault.presets]
+  resultConfig.plugins = [...resultConfig.plugins, ...changesOnDefault.plugins ]
+
+  return resultConfig
 }
