@@ -16,6 +16,10 @@
 
 // module.exports = envSpecificConfig()
 
-const { webpackConfig } = require('shakapacker')
+const { webpackConfig, merge } = require('shakapacker')
 
-module.exports = webpackConfig
+const ignoreWarningsConfig = {
+  ignoreWarnings: [/Module not found: Error: Can't resolve 'react-dom\/client'/],
+};
+
+module.exports = merge({}, webpackConfig, ignoreWarningsConfig)
