@@ -1,25 +1,15 @@
-// name this file config/webpack/webpack.config.js
-// const { env, webpackConfig } = require('shakapacker')
-// const { existsSync } = require('fs')
-// const { resolve } = require('path')
+const { existsSync } = require('fs');
+const { resolve } = require('path');
+const { env, webpackConfig } = require('shakapacker');
 
-// const envSpecificConfig = () => {
-//   const path = resolve(__dirname, `${env.nodeEnv}.js`)
-//   if (existsSync(path)) {
-//     console.log(`Loading ENV specific webpack configuration file ${path}`)
-//     return require(path)
-//   } else {                       
-//     // Probably an error if the file for the NODE_ENV does not exist
-//     throw new Error(`Got Error with NODE_ENV = ${env.nodeEnv}`);
-//   }
-// }
-
-// module.exports = envSpecificConfig()
-
-const { webpackConfig, merge } = require('shakapacker')
-
-const ignoreWarningsConfig = {
-  ignoreWarnings: [/Module not found: Error: Can't resolve 'react-dom\/client'/],
+const envSpecificConfig = () => {
+  const path = resolve(__dirname, `${env.nodeEnv}.js`);
+  if (existsSync(path)) {
+    console.log(`Loading ENV specific webpack configuration file ${path}`);
+    return require(path);
+  } else {
+    return webpackConfig;
+  }
 };
 
-module.exports = merge({}, webpackConfig, ignoreWarningsConfig)
+module.exports = envSpecificConfig();
