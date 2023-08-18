@@ -3630,10 +3630,10 @@ react@^18.2.0:
   dependencies:
     loose-envify "^1.1.0"
 
-react_ujs@3.0.0-rc.0:
-  version "3.0.0-rc.0"
-  resolved "https://registry.yarnpkg.com/react_ujs/-/react_ujs-3.0.0-rc.0.tgz#cd3cfc6f488122fdda62f7aa3f26bc59c45efc1e"
-  integrity sha512-4BY3igUsSpBH6XAc5k+14PFkZlH5UANgUEivCvBW+tuUNAPfYXthNeLm5tn0dbYrMb+qgOp1NjJNxlCmLFwD0Q==
+react_ujs@3.1.x:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/react_ujs/-/react_ujs-3.1.1.tgz#7c4a990280014d5f42a04bd6380ec7d85db7a7bb"
+  integrity sha512-BCNm1DFaXl9XU50UDWYAWW3HpKwkWqWaSVxW/Mg6NGhQUvs7XdxFPd08ZSSF8+OjHXqQ1lJPKtIefcQDqbnA3Q==
   dependencies:
     "@babel/preset-react" "^7.22.5"
     css-loader "^6.8.1"
