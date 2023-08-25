@@ -12,11 +12,13 @@ const configureServer = () => {
 
   // We just want the single server bundle entry
   const serverEntry = {
-    'server_rendering': serverWebpackConfig.entry['server_rendering']
+    'server-bundle': serverWebpackConfig.entry['server-bundle']
   }
 
-  if (!serverEntry['server_rendering']) {
-    throw new Error('Create a pack with the file name \'server_rendering.js\' containing all the server rendering files')
+  if (!serverEntry['server-bundle']) {
+    throw new Error(
+      "Create a pack with the file name 'server-bundle.js' containing all the server rendering files",
+    )
   }
 
   serverWebpackConfig.entry = serverEntry
@@ -37,14 +39,12 @@ const configureServer = () => {
   serverWebpackConfig.optimization = {
     minimize: false
   }
-  serverWebpackConfig.plugins.unshift(
-    new webpack.optimize.LimitChunkCountPlugin({ maxChunks: 1 })
-  )
+  serverWebpackConfig.plugins.unshift(new webpack.optimize.LimitChunkCountPlugin({ maxChunks: 1 }))
 
-  // Custom output for the server_rendering that matches the config in
+  // Custom output for the server-bundle that matches the config in
   // config/initializers/react_on_rails.rb
   serverWebpackConfig.output = {
-    filename: 'server_rendering.js',
+    filename: 'server-bundle.js',
     globalObject: 'this',
     // If using the React on Rails Pro node server renderer, uncomment the next line
     // libraryTarget: 'commonjs2',

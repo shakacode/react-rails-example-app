@@ -7,8 +7,7 @@ const configureClient = () => {
   // In case this entry is not deleted, a very strange "window" not found
   // error shows referring to window["webpackJsonp"]. That is because the
   // client config is going to try to load chunks.
-  delete clientConfig.entry['server_rendering']
-  
+  delete clientConfig.entry['server-bundle']
   return clientConfig
 }
 
