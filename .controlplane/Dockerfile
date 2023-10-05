@@ -24,7 +24,6 @@ RUN yarn install
 COPY Gemfile* config.ru Rakefile babel.config.js postcss.config.js ./
 COPY app ./app
 COPY bin ./bin
-COPY client ./client
 COPY config ./config
 COPY db ./db
 COPY lib ./lib
