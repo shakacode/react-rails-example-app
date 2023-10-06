@@ -59,21 +59,21 @@ You should be able to see this information in the Control Plane UI.
 # Note, below commands use `cpl` which is the Heroku to Control Plane playbook script.
 
 # Provision all infrastructure on Control Plane.
-# app tutorial-app will be created per definition in .controlplane/controlplane.yml
-cpl apply-template gvc rails -a tutorial-app
+# app react-rails-example-app will be created per definition in .controlplane/controlplane.yml
+cpl apply-template gvc rails -a react-rails-example-app
 
 # Build and push docker image to Control Plane repository
 # Note, may take many minutes. Be patient.
-cpl build-image -a tutorial-app
+cpl build-image -a react-rails-example-app
 
 # Promote image to app after running `cpl build-image command`
-cpl deploy-image -a tutorial-app
+cpl deploy-image -a react-rails-example-app
 
 # See how app is starting up
-cpl logs -a tutorial-app
+cpl logs -a react-rails-example-app
 
 # Open app in browser (once it has started up)
-cpl open -a tutorial-app
+cpl open -a react-rails-example-app
 ```
 
 Notice that in the first attempt to build the image, you may get it interrupted with a message like this:
@@ -87,7 +87,7 @@ unsupported:
 ***  You are trying to push/pull to your org's private registry in Control Plane.  ***
 ***  First, grant docker access the registry using the 'cpln' command:             ***
 
-       cpln image docker-login --org tutorial-app
+       cpln image docker-login --org react-rails-example-app
 ```
 
 Run the given command as instructed and repeat the `build-image` command.
@@ -96,18 +96,18 @@ Run the given command as instructed and repeat the `build-image` command.
 
 ```sh
 # Build and push new image with sequential image tagging, e.g. 'ror-tutorial_123'
-cpl build-image -a tutorial-app
+cpl build-image -a react-rails-example-app
 
 # OR
 # Build and push with sequential image tagging and commit SHA, e.g. 'ror-tutorial_123_ABCD'
-cpl build-image -a tutorial-app --commit ABCD
+cpl build-image -a react-rails-example-app --commit ABCD
 
 # Run database migrations (or other release tasks) with latest image,
 # while app is still running on previous image.
 # This is analogous to the release phase.
-cpl runner rails db:migrate -a tutorial-app --image latest
+cpl runner rails db:migrate -a react-rails-example-app --image latest
 
 # Pomote latest image to app
-cpl deploy-image -a tutorial-app
+cpl deploy-image -a react-rails-example-app
 ```
 
