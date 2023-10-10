@@ -38,7 +38,7 @@ ENV SECRET_KEY_BASE=NOT_USED_NON_BLANK
 RUN rails assets:precompile
 
 # add entrypoint
-COPY .controlplane/entrypoint.sh ./
-ENTRYPOINT ["/app/entrypoint.sh"]
+# COPY .controlplane/entrypoint.sh ./
+# ENTRYPOINT ["/app/entrypoint.sh"]
 
 CMD ["rails", "s"]
