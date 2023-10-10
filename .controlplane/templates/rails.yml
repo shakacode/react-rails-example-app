@@ -23,7 +23,6 @@ spec:
   defaultOptions:
     # Start out like this for "test apps"
     autoscaling:
-      minScale: 1
       # Max of 1 effectively disables autoscaling, so like a Heroku dyno count of 1
       maxScale: 1
     capacityAI: false
