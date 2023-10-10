@@ -13,18 +13,7 @@ aliases:
     # and the application image updates.
     app_workloads:
       - rails
-    # Like Heroku add-ons
-    # additional_workloads:
-    #   - postgres
 
 apps:
   react-rails-example-app:
     <<: *common
-  tutorial-app:
-    <<: *common
-  # QA Apps are like Heroku review apps, but the use `prefix` so you can run a commmand like
-  # this to create a QA app for the tutorial app.
-  # `cpl setup gvc postgres redis rails -a qa-tutorial-app-pr-1234`
-  qa-tutorial-app:
-    <<: *common
-    prefix: true
